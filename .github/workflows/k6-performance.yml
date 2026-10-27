@@ -1,0 +1,59 @@
+name: ⚡ K6 Performance & Flash-Sale SLA Gate
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  performance-validation:
+    name: 🚀 Execute Flash-Sale Performance Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 📦 Install Dependencies
+        run: npm ci
+
+      - name: ⚡ Setup Grafana k6
+        uses: grafana/setup-k6-action@v1
+
+      - name: 🛡️ Start Flash-Sale Mock Gateway
+        run: |
+          node src/server/mock-server.js &
+          # Wait for server healthcheck
+          for i in {1..30}; do
+            if curl -s http://localhost:8090/healthz | grep -q "healthy"; then
+              echo "✅ Mock Gateway is healthy and ready on port 8090!"
+              break
+            fi
+            echo "Waiting for Mock Gateway to start..."
+            sleep 1
+          done
+
+      - name: 🧪 Execute Load Test (Customer Journey)
+        run: k6 run tests/load/load-test.js
+
+      - name: 💥 Execute Stress Test (Inventory Contention)
+        run: k6 run tests/stress/stress-test.js
+
+      - name: ⚡ Execute Spike Test (Flash-Drop Surge)
+        run: k6 run tests/spike/spike-test.js
+
+      - name: 📊 Upload HTML Performance Reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: k6-performance-reports
+          path: reports/*.html
+          retention-days: 14

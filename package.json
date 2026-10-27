@@ -1,0 +1,46 @@
+{
+  "name": "k6-ecommerce-performance-engine",
+  "version": "2.0.0",
+  "description": "Enterprise-Grade Distributed E-Commerce & Flash-Sale Performance Testing Framework powered by K6. Features atomic inventory reservation with TTL locks, idempotent checkout, faceted catalog search, and automated SLA threshold gating.",
+  "main": "tests/load/load-test.js",
+  "author": "Aman Patwal <amanpatwalfor@gmail.com> (https://github.com/APdrone)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/APdrone/k6-performance-engine.git"
+  },
+  "keywords": [
+    "k6",
+    "performance-testing",
+    "load-testing",
+    "stress-testing",
+    "spike-testing",
+    "ecommerce",
+    "flash-sale",
+    "concurrency",
+    "sdet",
+    "quality-engineering",
+    "ci-cd",
+    "p99-latency"
+  ],
+  "scripts": {
+    "start": "node src/server/mock-server.js",
+    "mock:server": "node src/server/mock-server.js",
+    "test": "node scripts/run-all-tests.js",
+    "test:load": "k6 run tests/load/load-test.js",
+    "test:stress": "k6 run tests/stress/stress-test.js",
+    "test:spike": "k6 run tests/spike/spike-test.js",
+    "test:load:dev": "k6 run -e ENV=dev tests/load/load-test.js",
+    "test:load:staging": "k6 run -e ENV=staging tests/load/load-test.js",
+    "test:load:production": "k6 run -e ENV=production tests/load/load-test.js",
+    "test:stress:dev": "k6 run -e ENV=dev tests/stress/stress-test.js",
+    "test:stress:staging": "k6 run -e ENV=staging tests/stress/stress-test.js",
+    "test:spike:dev": "k6 run -e ENV=dev tests/spike/spike-test.js",
+    "test:spike:staging": "k6 run -e ENV=staging tests/spike/spike-test.js",
+    "test:soak": "k6 run tests/soak/soak-test.js",
+    "test:soak:dev": "k6 run -e ENV=dev tests/soak/soak-test.js"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}

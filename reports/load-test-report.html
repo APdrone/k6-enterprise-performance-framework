@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flash-Sale Concurrency Benchmark — K6 Performance Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: #111827;
+      --card-border: #1f2937;
+      --accent: #7c3aed;
+      --success: #10b981;
+      --danger: #ef4444;
+      --text: #f9fafb;
+      --text-muted: #9ca3af;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      padding: 32px 20px;
+    }
+    .container { max-width: 1100px; margin: 0 auto; }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--card-border);
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .badge {
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .badge-pass { background: rgba(16, 185, 129, 0.15); color: var(--success); border: 1px solid rgba(16, 185, 129, 0.3); }
+    .badge-fail { background: rgba(239, 68, 68, 0.15); color: var(--danger); border: 1px solid rgba(239, 68, 68, 0.3); }
+    h1 { font-size: 1.8rem; font-weight: 800; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; margin-bottom: 24px; }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .card-label { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+    .card-val { font-size: 1.9rem; font-weight: 800; font-family: 'JetBrains Mono', monospace; }
+    .table-container {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    table { width: 100%; border-collapse: collapse; text-align: left; }
+    th { background: #172033; padding: 14px 18px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); }
+    td { padding: 14px 18px; border-bottom: 1px solid var(--card-border); font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; }
+    footer { text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--card-border); }
+    footer a { color: #a78bfa; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>⚡ Flash-Sale Concurrency Benchmark</h1>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 4px;">Engine: <strong>K6 v2.2+</strong> • Architecture: <strong>Distributed E-Commerce & Flash-Sale Core</strong></p>
+      </div>
+      <div>
+        <span class="badge badge-pass">
+          ✓ SLA QUALITY GATES PASSED
+        </span>
+      </div>
+    </header>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-label">Total Requests</div>
+        <div class="card-val" style="color: #60a5fa;">609</div>
+        <div style="color: var(--text-muted); font-size: 0.8rem;">Throughput: 26.6 req/s</div>
+      </div>
+      <div class="card">
+        <div class="card-label">p95 Latency</div>
+        <div class="card-val" style="color: var(--success);">33.9<span style="font-size: 1rem;">ms</span></div>
+        <div style="color: var(--text-muted); font-size: 0.8rem;">SLA Limit: &lt; 500ms</div>
+      </div>
+      <div class="card">
+        <div class="card-label">p99 Latency</div>
+        <div class="card-val" style="color: var(--success);">0<span style="font-size: 1rem;">ms</span></div>
+        <div style="color: var(--text-muted); font-size: 0.8rem;">SLA Limit: &lt; 1,000ms</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Check Success Rate</div>
+        <div class="card-val" style="color: var(--success);">100.00%</div>
+        <div style="color: var(--text-muted); font-size: 0.8rem;">1065 passed, 0 failed</div>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>K6 Metric Name</th>
+            <th>Measured Value</th>
+            <th>SLA Quality Gate</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>http_req_duration (p50 Median)</td>
+            <td>28.2 ms</td>
+            <td>&lt; 250 ms</td>
+            <td style="color: var(--success); font-weight: 700;">PASSED (Optimal)</td>
+          </tr>
+          <tr>
+            <td>http_req_duration (p95)</td>
+            <td>33.9 ms</td>
+            <td>&lt; 500 ms</td>
+            <td style="color: var(--success); font-weight: 700;">PASSED</td>
+          </tr>
+          <tr>
+            <td>http_req_duration (p99)</td>
+            <td>0 ms</td>
+            <td>&lt; 1,000 ms</td>
+            <td style="color: var(--success); font-weight: 700;">PASSED</td>
+          </tr>
+          <tr>
+            <td>http_req_duration (Average)</td>
+            <td>27.4 ms</td>
+            <td>Informational</td>
+            <td>Verified</td>
+          </tr>
+          <tr>
+            <td>http_req_failed (Error Rate)</td>
+            <td>0.49%</td>
+            <td>&lt; 1.00%</td>
+            <td style="color: var(--success); font-weight: 700;">PASSED</td>
+          </tr>
+          <tr>
+            <td>Peak Virtual Users (VUs)</td>
+            <td>25</td>
+            <td>Max Configured Target</td>
+            <td>Verified</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer>
+      <p>K6 Performance Engineering Framework • Engineered by <strong><a href="https://github.com/APdrone" target="_blank">Aman Patwal</a></strong> (Lead SDET & QA Automation Architect)</p>
+    </footer>
+  </div>
+</body>
+</html>

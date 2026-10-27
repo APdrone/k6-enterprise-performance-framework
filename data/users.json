@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "username": "testuser1",
+    "email": "testuser1@example.com",
+    "password": "password123"
+  },
+  {
+    "id": 2,
+    "username": "testuser2",
+    "email": "testuser2@example.com",
+    "password": "password123"
+  },
+  {
+    "id": 3,
+    "username": "testuser3",
+    "email": "testuser3@example.com",
+    "password": "password123"
+  },
+  {
+    "id": 4,
+    "username": "testuser4",
+    "email": "testuser4@example.com",
+    "password": "password123"
+  },
+  {
+    "id": 5,
+    "username": "testuser5",
+    "email": "testuser5@example.com",
+    "password": "password123"
+  },
+  {
+    "id": 6,
+    "username": "testuser6",
+    "email": "testuser6@example.com",
+    "password": "password123"
+  },
+  {
+    "id": 7,
+    "username": "testuser7",
+    "email": "testuser7@example.com",
+    "password": "password123"
+  },
+  {
+    "id": 8,
+    "username": "testuser8",
+    "email": "testuser8@example.com",
+    "password": "password123"
+  },
+  {
+    "id": 9,
+    "username": "testuser9",
+    "email": "testuser9@example.com",
+    "password": "password123"
+  },
+  {
+    "id": 10,
+    "username": "testuser10",
+    "email": "testuser10@example.com",
+    "password": "password123"
+  }
+]

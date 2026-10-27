@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "name": "Smartphone X",
+    "category": "Electronics",
+    "price": 999.99,
+    "stock": 100
+  },
+  {
+    "id": 2,
+    "name": "Laptop Pro",
+    "category": "Electronics",
+    "price": 1499.99,
+    "stock": 50
+  },
+  {
+    "id": 3,
+    "name": "Wireless Headphones",
+    "category": "Electronics",
+    "price": 199.99,
+    "stock": 200
+  },
+  {
+    "id": 4,
+    "name": "Smart Watch",
+    "category": "Electronics",
+    "price": 299.99,
+    "stock": 150
+  },
+  {
+    "id": 5,
+    "name": "Tablet Mini",
+    "category": "Electronics",
+    "price": 399.99,
+    "stock": 75
+  },
+  {
+    "id": 6,
+    "name": "Bluetooth Speaker",
+    "category": "Electronics",
+    "price": 129.99,
+    "stock": 300
+  },
+  {
+    "id": 7,
+    "name": "Gaming Console",
+    "category": "Electronics",
+    "price": 499.99,
+    "stock": 60
+  },
+  {
+    "id": 8,
+    "name": "Digital Camera",
+    "category": "Electronics",
+    "price": 349.99,
+    "stock": 80
+  },
+  {
+    "id": 9,
+    "name": "Wireless Mouse",
+    "category": "Electronics",
+    "price": 49.99,
+    "stock": 250
+  },
+  {
+    "id": 10,
+    "name": "External Hard Drive",
+    "category": "Electronics",
+    "price": 129.99,
+    "stock": 120
+  }
+]
